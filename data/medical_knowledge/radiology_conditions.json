@@ -1,0 +1,470 @@
+[
+  {
+    "id": "COND001",
+    "name": "Cardiomegaly",
+    "category": "Thoracic / Cardiovascular",
+    "icd10": "I51.7",
+    "definition": "Enlargement of the heart, commonly defined on a posteroanterior (PA) chest radiograph as a cardiothoracic ratio (CTR) greater than 0.50. It can result from volume overload, pressure overload, myocardial infarction, or cardiomyopathy.",
+    "imaging_features": "On PA chest X-rays, the transverse diameter of the cardiac silhouette is greater than 50% of the internal transverse diameter of the thoracic cage. On lateral views, the posterior border of the heart projects posterior to the IVC or overlaps the spine. On CT/MRI, absolute measurement of chamber size and left ventricular end-diastolic volume index are used.",
+    "clinical_significance": "Suggests underlying heart failure, valvular heart disease, or hypertensive cardiomyopathy. Warrants further workup with echocardiography to evaluate left ventricular ejection fraction (LVEF) and myocardial function."
+  },
+  {
+    "id": "COND002",
+    "name": "Pulmonary Nodule",
+    "category": "Thoracic / Pulmonology",
+    "icd10": "R91.1",
+    "definition": "A discrete, well-demarcated, rounded opacity less than or equal to 3 cm in diameter that is completely surrounded by lung parenchyma and lacks associated atelectasis, hilar adenopathy, or pleural effusion.",
+    "imaging_features": "Appears as a round or oval soft tissue density on chest radiograph or CT. Features suggesting benignity include size <5mm, smooth borders, and specific calcification patterns (central, diffuse, laminated, popcorn). Features suggesting malignancy include size >1cm, spiculation, upper lobe location, and ground-glass component.",
+    "clinical_significance": "Follow-up depends on patient risk factors and nodule characteristics, guided by the Fleischner Society guidelines. Small nodules (<6 mm) in low-risk patients may require no follow-up, while larger, solid, or subsolid nodules require surveillance chest CT scans or biopsy."
+  },
+  {
+    "id": "COND003",
+    "name": "Pleural Effusion",
+    "category": "Thoracic / Pulmonology",
+    "icd10": "J90",
+    "definition": "Abnormal accumulation of fluid in the pleural space, which can be transudative (e.g., heart failure, cirrhosis) or exudative (e.g., pneumonia, malignancy, pulmonary embolism) according to Light's criteria.",
+    "imaging_features": "On upright chest X-rays, presents as blunting of the costophrenic angles (requires ~175 mL of fluid) and a meniscus sign. Large effusions cause dense opacification of the hemithorax and contralateral mediastinal shift. On CT, fluid collection conforms to the pleural space, and pleural thickening or enhancement may suggest exudate/malignancy. Ultrasound shows anechoic space above the diaphragm.",
+    "clinical_significance": "Requires clinical correlation to determine etiology. Symptomatic or large effusions may require diagnostic or therapeutic thoracentesis to assess fluid chemistry (protein, LDH, cytology, culture) and relieve dyspnea."
+  },
+  {
+    "id": "COND004",
+    "name": "Pneumothorax",
+    "category": "Thoracic / Pulmonology",
+    "icd10": "J93.9",
+    "definition": "Presence of air or gas in the pleural cavity, which causes collapse of the lung on the affected side. It can be spontaneous (primary or secondary), traumatic, or iatrogenic.",
+    "imaging_features": "On erect chest radiographs, shows a visible visceral pleural line without lung markings peripheral to it. On supine radiographs, it may manifest as a deep sulcus sign (abnormally deepened, lucent costophrenic angle). On CT, free air is readily visible in the anterior and medial pleural space.",
+    "clinical_significance": "Tension pneumothorax is a medical emergency requiring immediate needle decompression and thoracostomy (chest tube) insertion. Small spontaneous pneumothoraces (<2 cm) in stable patients can sometimes be managed conservatively with supplemental oxygen and observation."
+  },
+  {
+    "id": "COND005",
+    "name": "Lobar Pneumonia",
+    "category": "Thoracic / Infectious",
+    "icd10": "J18.1",
+    "definition": "Acute bacterial infection of the lung parenchyma involving a large portion or the entirety of a pulmonary lobe, typically caused by Streptococcus pneumoniae.",
+    "imaging_features": "Characterized by homogeneous consolidation of a single lobe or segment. Key features include the presence of air bronchograms (air-filled bronchi outlined by fluid-filled alveoli) and the silhouette sign (loss of normal anatomical borders, e.g., loss of right heart border in middle lobe consolidation).",
+    "clinical_significance": "Requires prompt antibiotic therapy. Radiographic resolution lags behind clinical recovery and can take up to 6 weeks; follow-up X-ray is recommended in patients over 50 or smokers to rule out an underlying obstructing neoplasm."
+  },
+  {
+    "id": "COND006",
+    "name": "Atelectasis",
+    "category": "Thoracic / Pulmonology",
+    "icd10": "J98.11",
+    "definition": "Collapse or loss of volume of all or part of a lung, leading to reduced gas exchange. Types include resorptive (obstructive), adhesive, compressive, and cicatrizing.",
+    "imaging_features": "Appears as a linear or wedge-shaped opacity on chest radiograph or CT. Direct signs include displacement of interlobar fissures, crowding of bronchovascular structures, and opacity. Indirect signs include ipsilateral diaphragmatic elevation, mediastinal shift toward the collapse, and compensatory hyperinflation of adjacent lobes.",
+    "clinical_significance": "Often transient (e.g., postoperative, mucus plugging). Persistent or lobar atelectasis warrants investigation with bronchoscopy or CT to exclude an endobronchial lesion such as a bronchogenic carcinoma."
+  },
+  {
+    "id": "COND007",
+    "name": "Emphysema",
+    "category": "Thoracic / Pulmonology",
+    "icd10": "J43.9",
+    "definition": "A major component of COPD characterized by abnormal, permanent enlargement of the airspaces distal to the terminal bronchioles, accompanied by destruction of their walls without obvious fibrosis.",
+    "imaging_features": "On chest X-rays, features include hyperinflated lungs, flattened hemidiaphragms, increased retrosternal clear space, and pruning of peripheral vasculature. On CT, characterized by areas of low attenuation lacking distinct walls, categorized as centrilobular (associated with smoking, upper lobes), panlobular (associated with alpha-1 antitrypsin deficiency, lower lobes), or paraseptal.",
+    "clinical_significance": "Irreversible lung disease. Management includes smoking cessation, bronchodilators, oxygen therapy, and in severe cases, lung volume reduction surgery or transplant."
+  },
+  {
+    "id": "COND008",
+    "name": "Pulmonary Edema",
+    "category": "Thoracic / Cardiovascular",
+    "icd10": "J81.0",
+    "definition": "Accumulation of fluid in the lung parenchyma and airspaces, most commonly due to elevated pulmonary capillary pressure from left ventricular heart failure (cardiogenic) or altered capillary permeability (non-cardiogenic).",
+    "imaging_features": "Presents sequentially as cardiomegaly, pulmonary venous congestion (cephalisation of blood vessels), interstitial edema (Kerley B lines representing thickened interlobular septa, peribronchial cuffing, pleural effusion), and alveolar edema (bilateral symmetric alveolar infiltrates in a batwing/butterfly distribution).",
+    "clinical_significance": "Acute cardiogenic pulmonary edema is a medical emergency requiring diuretics, oxygen, and afterload reduction. Differentiating from non-cardiogenic causes (like ARDS) is critical for appropriate ventilation and fluid management strategies."
+  },
+  {
+    "id": "COND009",
+    "name": "Interstitial Lung Disease",
+    "category": "Thoracic / Pulmonology",
+    "icd10": "J84.9",
+    "definition": "A diverse group of progressive pulmonary disorders affecting the lung parenchyma, characterized by diffuse inflammation and fibrotic changes in the alveolar walls and septa.",
+    "imaging_features": "On high-resolution chest CT (HRCT), manifestations include reticular patterns, ground-glass opacities, traction bronchiectasis, and honeycombing (clusters of cystic airspaces with thick walls, indicative of end-stage fibrosis). Distribution varies by etiology (e.g., peripheral and basal predominance in idiopathic pulmonary fibrosis).",
+    "clinical_significance": "Warrants multidisciplinary evaluation including rheumatologic serologies and pulmonary function tests (showing restrictive pattern). Treatment varies from immunosuppression to antifibrotic agents (nintedanib, pirfenidone)."
+  },
+  {
+    "id": "COND010",
+    "name": "Bronchiectasis",
+    "category": "Thoracic / Pulmonology",
+    "icd10": "J47.9",
+    "definition": "Abnormal, irreversible dilatation of the bronchi due to chronic inflammation and infection, secondary to conditions like cystic fibrosis, ciliary dyskinesia, or severe childhood infections.",
+    "imaging_features": "On high-resolution CT, characterized by the signet ring sign (internal diameter of the bronchus is larger than its accompanying pulmonary artery) and lack of normal bronchial tapering. Bronchial wall thickening and mucous plugging ('tree-in-bud' pattern) are often present.",
+    "clinical_significance": "Leads to chronic productive cough, hemoptysis, and recurrent pulmonary infections. Management focuses on airway clearance techniques, chest physiotherapy, and antibiotics for exacerbations."
+  },
+  {
+    "id": "COND011",
+    "name": "Hilar Adenopathy",
+    "category": "Thoracic / Oncology",
+    "icd10": "R59.0",
+    "definition": "Enlargement of the lymph nodes within the pulmonary hilum, which may be unilateral or bilateral. Causes include sarcoidosis, lymphoma, metastasis, tuberculosis, or fungal infections.",
+    "imaging_features": "On chest radiographs, manifests as lobulated widening of the hilar shadows. On CT, appears as soft-tissue masses in the hilar regions measuring >10 mm in short axis. Contrast-enhanced CT helps distinguish nodes from adjacent pulmonary vessels.",
+    "clinical_significance": "Bilateral, symmetric adenopathy is highly suggestive of sarcoidosis (especially if associated with paratracheal adenopathy, the '1-2-3 sign'). Unilateral adenopathy strongly raises concern for primary lung malignancy, metastasis, or active granulomatous infection (e.g., tuberculosis), requiring histopathological correlation."
+  },
+  {
+    "id": "COND012",
+    "name": "Aortic Dissection",
+    "category": "Thoracic / Vascular",
+    "icd10": "I71.0",
+    "definition": "A life-threatening vascular emergency characterized by a tear in the aortic intima, allowing blood to flow into and split the media, creating a false lumen. Categorized into Stanford Type A (involves ascending aorta) and Stanford Type B (descending aorta only).",
+    "imaging_features": "On chest X-ray, may show mediastinal widening, displacement of aortic calcification, or pleural effusion. Contrast-enhanced CT angiography (CTA) is the gold standard, showing an intimal flap dividing the true and false lumens, pericardial effusion, or branch vessel involvement.",
+    "clinical_significance": "Stanford Type A dissection is a surgical emergency with high mortality, requiring immediate operative repair. Stanford Type B dissection is typically managed medically with strict blood pressure and heart rate control (beta-blockers) unless complicated by malperfusion or rupture."
+  },
+  {
+    "id": "COND013",
+    "name": "Pneumomediastinum",
+    "category": "Thoracic / Emergency",
+    "icd10": "J98.2",
+    "definition": "Presence of free air or gas in the mediastinal space. Can occur due to alveolar rupture (Macklin effect), esophageal perforation (Boerhaave syndrome), or tracheal disruption.",
+    "imaging_features": "On chest radiographs, shows linear lucencies outlining the heart, aorta, and mediastinal structures. Features include the continuous diaphragm sign (air outlining the central diaphragm beneath the heart) and subcutaneous emphysema in the neck. On CT, air pockets are easily seen surrounding the esophagus and major vessels.",
+    "clinical_significance": "Often benign and self-limiting in spontaneous cases. However, if secondary to esophageal perforation, it is highly morbid and requires immediate surgical consultation and broad-spectrum antibiotics to prevent mediastinitis."
+  },
+  {
+    "id": "COND014",
+    "name": "Rib Fracture",
+    "category": "Thoracic / Musculoskeletal",
+    "icd10": "S22.3",
+    "definition": "A break or disruption in the continuity of a rib bone, typically resulting from blunt chest trauma.",
+    "imaging_features": "Appears as a cortical break, step-off, or angulation of the rib cortex on chest radiographs or CT. Callus formation may indicate healing on delayed imaging. Associated findings such as pneumothorax, hemothorax, or pulmonary contusion must be evaluated.",
+    "clinical_significance": "Primary complications relate to pain, which can cause splinting and subsequent atelectasis or pneumonia. Multiple adjacent ribs fractured in two or more places can lead to a 'flail chest,' which requires mechanical ventilation support."
+  },
+  {
+    "id": "COND015",
+    "name": "Hiatal Hernia",
+    "category": "Thoracic / Gastrointestinal",
+    "icd10": "K44.9",
+    "definition": "Protrusion of abdominal contents, most commonly the stomach, through the esophageal hiatus of the diaphragm into the thoracic cavity.",
+    "imaging_features": "On chest X-rays, appears as a retrocardiac soft-tissue mass, often containing an air-fluid level. On CT, the herniated stomach is seen superior to the esophageal hiatus, with widening of the diaphragmatic crura.",
+    "clinical_significance": "Commonly associated with gastroesophageal reflux disease (GERD). Large hernia (paraesophageal) carries a risk of gastric volvulus, strangulation, or obstruction, which requires surgical correction."
+  },
+  {
+    "id": "COND016",
+    "name": "Osteopenia",
+    "category": "Musculoskeletal / Metabolic",
+    "icd10": "M85.8",
+    "definition": "A condition characterized by a decrease in bone mineral density (BMD) below normal reference levels, but not low enough to be classified as osteoporosis.",
+    "imaging_features": "On plain radiographs, osteopenia appears as increased radiolucency of bones, thinning of the cortex, and loss of trabecular pattern (requires ~30% bone loss to be visible). Quantitative assessment is performed via dual-energy X-ray absorptiometry (DEXA), defined by a T-score between -1.0 and -2.5.",
+    "clinical_significance": "Indicates increased risk of future fractures. Management includes calcium and vitamin D supplementation, weight-bearing exercise, and screening for progression to osteoporosis."
+  },
+  {
+    "id": "COND017",
+    "name": "Acute Ischemic Stroke",
+    "category": "Neuroradiology / Vascular",
+    "icd10": "I63.9",
+    "definition": "Acute focal neurological deficit caused by thromboembolic obstruction of a cerebral artery, leading to tissue ischemia and infarction.",
+    "imaging_features": "Non-contrast CT is performed immediately to exclude hemorrhage. Early ischemic changes on CT (within 6 hours) include loss of grey-white matter differentiation, insular cleft sign, and hyperdense middle cerebral artery (MCA) sign. Diffusion-weighted MRI (DWI) is the most sensitive sequence, showing hyperintensity (restricted diffusion) within minutes of onset, with corresponding ADC hypointensity.",
+    "clinical_significance": "A critical emergency. Patients presenting within 4.5 hours of symptom onset may be eligible for intravenous tissue plasminogen activator (tPA). If large vessel occlusion is present, mechanical thrombectomy is indicated within 24 hours."
+  },
+  {
+    "id": "COND018",
+    "name": "Intracranial Hemorrhage",
+    "category": "Neuroradiology / Vascular",
+    "icd10": "I61.9",
+    "definition": "Bleeding within the skull vault, which can be intra-axial (intracerebral, intraventricular) or extra-axial (epidural, subdural, subarachnoid).",
+    "imaging_features": "On non-contrast CT, acute blood appears hyperdense (typically 60-80 Hounsfield Units). Over time (weeks), the hematoma becomes isodense and eventually hypodense. MRI shows complex signal intensity depending on the chemical state of hemoglobin (oxyhemoglobin, deoxyhemoglobin, methemoglobin, hemosiderin).",
+    "clinical_significance": "Can cause mass effect, midline shift, brain herniation, and elevated intracranial pressure. Management ranges from conservative blood pressure control to urgent neurosurgical evacuation."
+  },
+  {
+    "id": "COND019",
+    "name": "Subdural Hematoma",
+    "category": "Neuroradiology / Trauma",
+    "icd10": "S06.5",
+    "definition": "Bleeding between the dura mater and the arachnoid membrane, typically resulting from tear of bridging cortical veins during trauma. More common in elderly patients and those on anticoagulants.",
+    "imaging_features": "On non-contrast head CT, acute subdural hematoma presents as a crescent-shaped hyperdense fluid collection that crosses cranial sutures but does not cross dural attachments (like the falx). Chronic subdural hematoma appears hypodense or isodense relative to CSF/brain parenchyma.",
+    "clinical_significance": "Symptoms range from headache to severe cognitive decline and coma. Surgery (burr holes or craniotomy) is indicated for symptomatic collections, hematoma thickness >10 mm, or midline shift >5 mm."
+  },
+  {
+    "id": "COND020",
+    "name": "Epidural Hematoma",
+    "category": "Neuroradiology / Trauma",
+    "icd10": "S06.4",
+    "definition": "Bleeding between the inner table of the skull and the dura mater, most commonly due to laceration of the middle meningeal artery associated with a temporal bone fracture.",
+    "imaging_features": "On non-contrast head CT, presents as a biconvex (lenticular) hyperdense collection that does not cross cranial sutures (as the dura is firmly attached at sutures) but can cross dural venous sinuses.",
+    "clinical_significance": "Classically presents with a 'lucid interval' followed by rapid neurologic deterioration. It is a neurosurgical emergency requiring immediate craniotomy and surgical evacuation to prevent uncal herniation."
+  },
+  {
+    "id": "COND021",
+    "name": "Subarachnoid Hemorrhage",
+    "category": "Neuroradiology / Vascular",
+    "icd10": "I60.9",
+    "definition": "Extravasation of blood into the subarachnoid space, most commonly due to trauma, or non-traumatically due to rupture of a cerebral aneurysm (e.g., berry aneurysm).",
+    "imaging_features": "Non-contrast head CT shows hyperdensity within the basal cisterns, sylvian fissures, and cerebral sulci (often described as 'star-shaped' configuration). CTA or catheter angiography is performed to search for an aneurysmal source.",
+    "clinical_significance": "Classically presents with a sudden-onset 'worst headache of life' (thunderclap headache). Critical complications include vasospasm, rebleeding, and hydrocephalus. Aneurysms require surgical clipping or endovascular coiling."
+  },
+  {
+    "id": "COND022",
+    "name": "Brain Tumor",
+    "category": "Neuroradiology / Oncology",
+    "icd10": "C71.9",
+    "definition": "Neoplastic growth within the cranial vault, which can be primary (e.g., glioma, meningioma) or secondary (metastasis from lung, breast, melanoma).",
+    "imaging_features": "On MRI, lesions typically show T2/FLAIR hyperintensity representing tumor and surrounding vasogenic edema. Contrast-enhanced T1 sequences show variable enhancement patterns (e.g., ring enhancement in glioblastoma/metastasis, homogeneous enhancement in meningioma). Metastasies are often located at the grey-white matter junction.",
+    "clinical_significance": "Requires biopsy for histopathological grading. Treatments include surgical resection, radiation therapy, and chemotherapy. Corticosteroids (dexamethasone) are used to manage symptomatic vasogenic edema."
+  },
+  {
+    "id": "COND023",
+    "name": "Meningioma",
+    "category": "Neuroradiology / Oncology",
+    "icd10": "D32.9",
+    "definition": "The most common primary non-malignant brain tumor, arising from the meningothelial cells of the arachnoid membrane.",
+    "imaging_features": "Appears as a well-demarcated extra-axial mass, broad-based to the dura. On non-contrast CT, it is often hyperdense and may contain calcifications. On MRI, it is typically isointense to cortex on T1 and T2, shows intense homogeneous enhancement, and possesses a characteristic 'dural tail' sign.",
+    "clinical_significance": "Slow-growing. Small asymptomatic meningiomas can be managed with active surveillance. Large or symptomatic lesions are treated with surgical resection or stereotactic radiosurgery."
+  },
+  {
+    "id": "COND024",
+    "name": "Multiple Sclerosis",
+    "category": "Neuroradiology / Demyelinating",
+    "icd10": "G35",
+    "definition": "Chronic inflammatory demyelinating disease of the central nervous system, characterized by immune-mediated destruction of myelin sheaths.",
+    "imaging_features": "On brain and spine MRI, characterized by demyelinating plaques that appear as focal T2/FLAIR hyperintensities. Classically oriented perpendicular to the ventricles (Dawson's fingers). Active lesions show gadolinium enhancement. Locations include periventricular, juxtacortical, infratentorial, and spinal cord.",
+    "clinical_significance": "Diagnosis utilizes McDonald criteria, combining clinical presentation and MRI evidence of dissemination in space and time. Treatment involves disease-modifying therapies (DMTs) and acute corticosteroid courses for relapses."
+  },
+  {
+    "id": "COND025",
+    "name": "Hydrocephalus",
+    "category": "Neuroradiology / Neurology",
+    "icd10": "G91.9",
+    "definition": "Abnormal accumulation of cerebrospinal fluid (CSF) within the brain ventricles, leading to ventricular dilation and potential elevation of intracranial pressure. Categorized as communicating or non-communicating (obstructive).",
+    "imaging_features": "On CT or MRI, presents as enlargement of the lateral, third, and fourth ventricles (in communicating) or selective enlargement upstream of an obstruction (in non-communicating, e.g., aqueductal stenosis). Features include ballooning of frontal horns, thinning of corpus callosum, and transependymal edema (FLAIR hyperintensity surrounding ventricles).",
+    "clinical_significance": "Needs correlation with clinical symptoms (headache, vomiting, papilledema). Obstructive hydrocephalus requires urgent neurosurgical intervention (ventriculoperitoneal shunt or third ventriculostomy) to prevent brain herniation."
+  },
+  {
+    "id": "COND026",
+    "name": "Cerebral Atrophy",
+    "category": "Neuroradiology / Neurology",
+    "icd10": "G31.9",
+    "definition": "Loss of neurons and connections in the brain, resulting in shrinkage of brain tissue, which can be diffuse or focal (typical of neurodegenerative diseases like Alzheimer's).",
+    "imaging_features": "CT and MRI show widening of the cerebral sulci, thinning of the gyri, and compensatory enlargement of the ventricles (hydrocephalus ex vacuo). Focal atrophy patterns include hippocampal atrophy in Alzheimer's disease and frontotemporal atrophy in FTD.",
+    "clinical_significance": "Commonly observed in normal aging, but accelerated or focal patterns correlate with cognitive decline, dementia, and psychiatric disorders. Requires neuropsychological assessment."
+  },
+  {
+    "id": "COND027",
+    "name": "Sinusitis",
+    "category": "Neuroradiology / ENT",
+    "icd10": "J32.9",
+    "definition": "Inflammation of the mucosal lining of the paranasal sinuses, which can be acute or chronic, infectious, allergic, or autoimmune.",
+    "imaging_features": "On sinus CT or brain MRI, findings include mucosal thickening (>3 mm), air-fluid levels (highly indicative of acute infection), and complete sinus opacification. Chronic cases may show osteomeatal complex obstruction and osteitis/bone thickening.",
+    "clinical_significance": "Mainly diagnosed clinically, but CT is indicated for chronic cases refractory to medical therapy or when complications (e.g., orbital cellulitis, epidural abscess, meningitis) are suspected. Surgical management involves functional endoscopic sinus surgery (FESS)."
+  },
+  {
+    "id": "COND028",
+    "name": "Mastoiditis",
+    "category": "Neuroradiology / ENT",
+    "icd10": "H70.9",
+    "definition": "A bacterial infection of the mastoid air cells, typically arising as a complication of untreated acute otitis media.",
+    "imaging_features": "On temporal bone CT, findings include complete opacification of the mastoid air cells with fluid/soft tissue density, and loss of the normal thin bony septa (coalescent mastoiditis). Contrast-enhanced MRI is useful to evaluate for intracranial extension.",
+    "clinical_significance": "A serious condition. Complications include subperiosteal abscess (Bezold abscess), venous sinus thrombosis, and meningitis. Requires intravenous antibiotics, myringotomy, or surgical mastoidectomy."
+  },
+  {
+    "id": "COND029",
+    "name": "Vertebral Compression Fracture",
+    "category": "Spine / Trauma / Metabolic",
+    "icd10": "M48.5",
+    "definition": "A fracture characterized by a collapse or reduction in height of a vertebral body, commonly occurring in the thoracic or lumbar spine due to osteoporosis or trauma.",
+    "imaging_features": "Plain radiographs show loss of vertebral height, typically involving the anterior column (wedge fracture). On CT/MRI, cortical step-offs are visible. MRI helps differentiate acute (bone marrow edema showing T1 hypointensity/T2-STIR hyperintensity) from chronic fractures (normal marrow signal).",
+    "clinical_significance": "Associated with significant pain and progressive kyphosis. Management includes pain control, bracing, treatment of osteoporosis (bisphosphonates), or minimally invasive procedures like vertebroplasty or kyphoplasty."
+  },
+  {
+    "id": "COND030",
+    "name": "Cervical Spondylosis",
+    "category": "Spine / Degenerative",
+    "icd10": "M47.812",
+    "definition": "Age-related degenerative changes of the cervical spine, including osteophyte formation, facet joint arthropathy, and intervertebral disc degeneration.",
+    "imaging_features": "X-rays and CT demonstrate narrowing of the intervertebral disc spaces, marginal osteophytes (bony spurs), facet arthropathy, and neural foraminal stenosis. MRI is essential to evaluate the spinal cord (looking for cervical myelopathy: cord compression and intrinsic T2 signal change) and nerve root compression.",
+    "clinical_significance": "Can manifest clinically as cervical radiculopathy (pain/parasthesias in dermatomal distribution) or myelopathy (gait disturbance, hyperreflexia). Conservative management includes physical therapy; decompression surgery is indicated for progressive myelopathy."
+  },
+  {
+    "id": "COND031",
+    "name": "Herniated Nucleus Pulposus",
+    "category": "Spine / Degenerative",
+    "icd10": "M51.2",
+    "definition": "Displacement of the nucleus pulposus through a tear in the annulus fibrosus of an intervertebral disc, commonly in the lumbar region (L4-S1) or cervical region.",
+    "imaging_features": "MRI is the modality of choice. Disc herniations are classified as protrusions (base is wider than dome) or extrusions (dome is wider than base, or sequestered free fragments). Shows compression of the adjacent thecal sac, traversing or exiting nerve roots, and disc height loss.",
+    "clinical_significance": "Causes radicular pain (sciatica) and sensory/motor deficits. Cauda equina syndrome (severe bilateral leg weakness, saddle anesthesia, bowel/bladder dysfunction) is a surgical emergency."
+  },
+  {
+    "id": "COND032",
+    "name": "Spinal Canal Stenosis",
+    "category": "Spine / Degenerative",
+    "icd10": "M48.0",
+    "definition": "Narrowing of the central spinal canal, lateral recess, or neural foramina, compressing the spinal cord or cauda equina nerve roots.",
+    "imaging_features": "On MRI/CT, shows reduction of the anteroposterior diameter of the spinal canal (less than 10 mm is relative, less than 7 mm is severe stenosis), effacement of CSF space surrounding the cord/cauda equina, and hypertrophy of the ligamentum flavum.",
+    "clinical_significance": "Classically presents as neurogenic claudication (lower extremity pain/cramping exacerbated by walking or standing, relieved by forward flexion/sitting). Decompressive laminectomy is performed for severe, refractory symptoms."
+  },
+  {
+    "id": "COND033",
+    "name": "Cholelithiasis",
+    "category": "Abdominal / Hepatobiliary",
+    "icd10": "K80.2",
+    "definition": "Presence of gallstones within the gallbladder lumen, most commonly composed of cholesterol or bilirubin.",
+    "imaging_features": "Ultrasound is the primary modality, showing mobile, echogenic foci within the gallbladder lumen that cast a clean posterior acoustic shadow. On CT, gallstones are variable in appearance, from densely calcified to gas-containing, and many cholesterol stones are isodense to bile.",
+    "clinical_significance": "Usually asymptomatic. Symptomatic gallstones cause biliary colic (episodic right upper quadrant pain after fatty meals). Asymptomatic gallstones generally do not require treatment, whereas symptomatic cases are treated with elective cholecystectomy."
+  },
+  {
+    "id": "COND034",
+    "name": "Acute Cholecystitis",
+    "category": "Abdominal / Hepatobiliary",
+    "icd10": "K81.0",
+    "definition": "Acute inflammation of the gallbladder, almost always (>95%) caused by obstruction of the cystic duct by a gallstone (calculous cholecystitis).",
+    "imaging_features": "Ultrasound demonstrates gallbladder wall thickening (>3 mm), gallbladder distension, pericholecystic fluid, and presence of obstructing gallstones. Sonographic Murphy's sign (pain elicited by pressing the probe over the gallbladder) has a high positive predictive value. CT shows similar findings with enhancement of the gallbladder wall.",
+    "clinical_significance": "Requires hospitalization, intravenous fluids, antibiotics, and early cholecystectomy (usually within 24-72 hours) to prevent gangrene, perforation, or empyema."
+  },
+  {
+    "id": "COND035",
+    "name": "Liver Cirrhosis",
+    "category": "Abdominal / Hepatobiliary",
+    "icd10": "K74.6",
+    "definition": "Diffuse, irreversible hepatic fibrosis and nodular regeneration, representing the end stage of chronic liver disease (e.g., alcohol, hepatitis, NASH).",
+    "imaging_features": "On ultrasound, CT, or MRI, signs include hepatic surface nodularity (irregular border), hypertrophy of the caudate lobe and left lobe with atrophy of the right lobe, and heterogenous echo texture/signal. Portal hypertension features include splenomegaly, ascites, and portosystemic collaterals (varices).",
+    "clinical_significance": "Carries high risk of hepatic encephalopathy, variceal bleeding, and hepatocellular carcinoma (HCC). Surveillance with ultrasound and alpha-fetoprotein (AFP) is indicated every 6 months."
+  },
+  {
+    "id": "COND036",
+    "name": "Hepatic Steatosis",
+    "category": "Abdominal / Hepatobiliary",
+    "icd10": "K76.0",
+    "definition": "Abnormal accumulation of triglycerides within hepatocytes, representing fatty liver disease, which can be alcoholic or non-alcoholic (NAFLD).",
+    "imaging_features": "On ultrasound, manifests as diffuse hyperechogenicity of the liver parenchyma ('bright liver') with increased attenuation of the sound beam (deep structures are poorly visualized). On unenhanced CT, hepatic steatosis is diagnosed when liver attenuation is less than 40 HU, or at least 10 HU less than spleen attenuation. MRI in-phase/out-of-phase imaging shows drop in signal on out-of-phase sequences.",
+    "clinical_significance": "NAFLD is associated with obesity, diabetes, and metabolic syndrome. It can progress to steatohepatitis (NASH), cirrhosis, and liver failure. Lifestyle modifications are the primary treatment."
+  },
+  {
+    "id": "COND037",
+    "name": "Hepatic Hemangioma",
+    "category": "Abdominal / Hepatobiliary",
+    "icd10": "D18.03",
+    "definition": "The most common benign tumor of the liver, consisting of blood vessels lined by endothelial cells.",
+    "imaging_features": "On ultrasound, classically appears as a well-defined, homogeneous, hyperechoic lesion. On contrast-enhanced CT or MRI, demonstrates a characteristic enhancement pattern: peripheral nodular pooling/enhancement on early phases, with progressive centripetal fill-in on portal venous and delayed phases.",
+    "clinical_significance": "Almost always asymptomatic and found incidentally. Does not require treatment or routine follow-up unless large (>5 cm) and causing mass-effect symptoms or when the diagnosis is atypical."
+  },
+  {
+    "id": "COND038",
+    "name": "Splenomegaly",
+    "category": "Abdominal / Hematology",
+    "icd10": "R16.1",
+    "definition": "Enlargement of the spleen, typically defined as a splenic length greater than 12-13 cm on imaging, resulting from portal hypertension, hematologic disorders, infections, or storage diseases.",
+    "imaging_features": "Measured on coronal or sagittal planes. On CT and MRI, splenic length >13 cm is diagnostic. Displacement of the left kidney and left hemidiaphragm may be seen in massive splenomegaly.",
+    "clinical_significance": "Indicates underlying systemic disease. Complications include hypersplenism (anemia, thrombocytopenia) and increased risk of splenic rupture from minor trauma."
+  },
+  {
+    "id": "COND039",
+    "name": "Renal Calculi",
+    "category": "Abdominal / Nephrology",
+    "icd10": "N20.0",
+    "definition": "Mineral deposits (most commonly calcium oxalate) formed within the renal collecting system.",
+    "imaging_features": "Non-contrast CT of the abdomen and pelvis (renal stone protocol) is the gold standard, showing hyperdense calcifications within the renal parenchyma, calyces, renal pelvis, or ureter. Ultrasound shows echogenic foci with posterior acoustic shadowing. X-ray (KUB) shows radio-opaque stones (calcium).",
+    "clinical_significance": "Causes acute, severe renal colic when passing down the ureter, often accompanied by hematuria. Obstruction combined with infection is a urologic emergency requiring urgent decompression."
+  },
+  {
+    "id": "COND040",
+    "name": "Renal Cysts",
+    "category": "Abdominal / Nephrology",
+    "icd10": "N28.1",
+    "definition": "Fluid-filled cavities in the kidneys, classified using the Bosniak criteria (I to IV) on CT or MRI to estimate malignancy risk.",
+    "imaging_features": "Bosniak I: Simple cyst (hairline thin wall, fluid density - 0-20 HU, no enhancement). Bosniak II: Minimally complex (few thin septa, fine calcifications). Bosniak IIF: Minimally complex requiring follow-up. Bosniak III: Indeterminate thick/nodular septa/wall. Bosniak IV: Malignant features (solid enhancing components).",
+    "clinical_significance": "Bosniak I and II are benign and require no follow-up. IIF requires surveillance. III and IV have high risk of renal cell carcinoma (RCC) and require surgical excision or ablation."
+  },
+  {
+    "id": "COND041",
+    "name": "Hydronephrosis",
+    "category": "Abdominal / Urology",
+    "icd10": "N13.3",
+    "definition": "Dilation of the renal pelvis and calyces, typically secondary to obstruction of urine outflow.",
+    "imaging_features": "Ultrasound and CT show anechoic/fluid-filled dilation of the renal pelvis and calyces branching from the renal hilum. Cortical thinning may be present in chronic cases. The level of obstruction (e.g., ureterovesical junction, ureteropelvic junction) should be identified.",
+    "clinical_significance": "Unresolved obstruction leads to irreversible renal parenchyma atrophy and kidney injury. Management requires relief of the obstruction (e.g., ureteral stent, nephrostomy tube, lithotripsy)."
+  },
+  {
+    "id": "COND042",
+    "name": "Acute Appendicitis",
+    "category": "Abdominal / Emergency",
+    "icd10": "K35.80",
+    "definition": "Acute inflammation of the vermiform appendix, typically secondary to luminal obstruction by a appendicolith or lymphoid hyperplasia.",
+    "imaging_features": "On CT (modality of choice in adults), findings include an outer appendix diameter >6 mm, wall thickening and hyperenhancement, surrounding fat stranding, and sometimes an appendicolith. Ultrasound in children/pregnant women shows a non-compressible, blind-ended tube >6 mm in diameter.",
+    "clinical_significance": "A common cause of acute abdomen requiring surgical intervention (appendectomy). Delay increases risk of perforation, abscess formation, and peritonitis."
+  },
+  {
+    "id": "COND043",
+    "name": "Diverticulitis",
+    "category": "Abdominal / Emergency",
+    "icd10": "K57.32",
+    "definition": "Inflammation of colonic diverticula, most commonly in the sigmoid colon, caused by micro-perforation of a diverticulum.",
+    "imaging_features": "CT demonstrates colonic wall thickening (>3 mm), outpocketings (diverticula), and surrounding pericolic fat stranding. Complications include pericolic abscess, free extraluminal air (perforation), fistulization, or bowel obstruction.",
+    "clinical_significance": "Uncomplicated cases are managed medically with oral/IV antibiotics and bowel rest. Complicated diverticulitis (e.g., large abscess, free perforation) may require percutaneous drainage or emergency bowel resection (Hartmann's procedure)."
+  },
+  {
+    "id": "COND044",
+    "name": "Pancreatitis",
+    "category": "Abdominal / Gastroenterology",
+    "icd10": "K85.9",
+    "definition": "Acute inflammatory process of the pancreas, characterized by premature activation of digestive enzymes within the gland.",
+    "imaging_features": "On CT, findings range from mild gland enlargement and ill-defined borders with peripancreatic fat stranding (interstitial edematous pancreatitis) to lack of enhancement representing necrosis (necrotizing pancreatitis). Fluid collections (pseudocysts) may develop on delayed imaging.",
+    "clinical_significance": "Severe cases cause systemic inflammatory response syndrome (SIRS) and multi-organ failure. Management is supportive, consisting of aggressive fluid resuscitation, pain control, and nutritional support."
+  },
+  {
+    "id": "COND045",
+    "name": "Ascites",
+    "category": "Abdominal / Gastroenterology",
+    "icd10": "R18.8",
+    "definition": "Pathological accumulation of fluid in the peritoneal cavity, commonly due to portal hypertension, cirrhosis, malignancy, or heart failure.",
+    "imaging_features": "On ultrasound and CT, presents as fluid collections in the dependent areas of the abdomen: Morrison's pouch (hepatorenal recess), paracolic gutters, and rectovesical/rectouterine pouch. Larger volumes float the bowel loops centrally.",
+    "clinical_significance": "Requires diagnostic paracentesis to calculate serum-ascites albumin gradient (SAAG) to classify as portal hypertension (SAAG >= 1.1 g/dL) or non-portal hypertension (SAAG < 1.1 g/dL). Complications include spontaneous bacterial peritonitis (SBP)."
+  },
+  {
+    "id": "COND046",
+    "name": "Osteoarthritis",
+    "category": "Musculoskeletal / Degenerative",
+    "icd10": "M19.90",
+    "definition": "Degenerative joint disease characterized by breakdown of articular cartilage and changes in subchondral bone.",
+    "imaging_features": "Classical radiographic features (X-ray) include: asymmetric joint space narrowing, subchondral sclerosis (increased bone density under cartilage), subchondral cysts (geodes), and marginal osteophytes. Commonly affects hands, spine, hips, and knees.",
+    "clinical_significance": "Causes chronic joint pain and functional impairment. Treatment ranges from physical therapy and analgesics to intra-articular steroid injections and total joint arthroplasty."
+  },
+  {
+    "id": "COND047",
+    "name": "Anterior Cruciate Ligament Tear",
+    "category": "Musculoskeletal / Trauma",
+    "icd10": "S83.51",
+    "definition": "Disruption of the fibers of the anterior cruciate ligament (ACL) of the knee, usually due to a non-contact pivoting injury.",
+    "imaging_features": "MRI is the gold standard. Findings include discontinuity of the ligament fibers on sagittal T2/PD sequences, abnormal flat orientation of the remaining distal fibers, and bone bruising pattern (edema in the lateral femoral condyle and posterior lateral tibial plateau).",
+    "clinical_significance": "Causes knee instability. Reconstructive surgery is often indicated for young, active patients, while conservative physical therapy is used for less active patients."
+  },
+  {
+    "id": "COND048",
+    "name": "Meniscal Tear",
+    "category": "Musculoskeletal / Trauma",
+    "icd10": "S83.2",
+    "definition": "Disruption of the fibrocartilage pads (menisci) in the knee, which act as shock absorbers between the femur and tibia.",
+    "imaging_features": "On MRI, diagnosed when high T2/PD signal unequivocally contacts the articular surface of the meniscus on at least two consecutive slices. Tear configurations include horizontal, vertical, radial, bucket handle, or root tears.",
+    "clinical_significance": "Presents as pain, swelling, and mechanical symptoms (locking/catching). Treatment ranges from conservative care to arthroscopic meniscectomy or repair depending on the tear location and patient age."
+  },
+  {
+    "id": "COND049",
+    "name": "Rotator Cuff Tear",
+    "category": "Musculoskeletal / Trauma",
+    "icd10": "M75.1",
+    "definition": "Partial or full-thickness tear of the tendons of the rotator cuff muscles (supraspinatus, infraspinatus, teres minor, subscapularis) of the shoulder.",
+    "imaging_features": "MRI is highly accurate. Full-thickness tears show fluid-filled gap traversing the entire tendon from articular to bursal surface, with retraction of the muscle-tendon junction. Partial-thickness tears show fluid signal in only a portion of the tendon.",
+    "clinical_significance": "Causes shoulder pain (especially with overhead activities) and weakness. Small or partial tears are managed conservatively, while full-thickness tears in active patients are repaired surgically."
+  },
+  {
+    "id": "COND050",
+    "name": "Joint Effusion",
+    "category": "Musculoskeletal / Joint",
+    "icd10": "M25.4",
+    "definition": "Abnormal accumulation of fluid in a joint cavity, which can be inflammatory, infectious (septic), traumatic (hemarthrosis), or degenerative.",
+    "imaging_features": "Ultrasound, CT, and MRI show fluid distending the joint capsule (e.g., suprapatellar recess in the knee, anterior capsule distension in the hip). Fluid character can be estimated (e.g., internal debris/septations suggest hemorrhage or infection).",
+    "clinical_significance": "A septic joint is a clinical emergency requiring immediate arthrocentesis and surgical lavage. Simple effusions are managed by treating the underlying osteoarthritic or inflammatory cause."
+  },
+  {
+    "id": "COND051",
+    "name": "Gouty Tophus",
+    "category": "Musculoskeletal / Metabolic",
+    "icd10": "M1a.0",
+    "definition": "Nodular deposit of monosodium urate crystals in joints and soft tissues, occurring in patients with chronic gout.",
+    "imaging_features": "On plain radiographs, topaceous deposits appear as soft tissue masses, often with calcifications, and adjacent punched-out bony erosions with overhanging edges ('rat bite' erosions). Dual-energy CT (DECT) is highly specific, color-coding uric acid deposits as green.",
+    "clinical_significance": "Indicates advanced gout. Can cause joint destruction and deformity. Management involves urate-lowering therapy (allopurinol) to dissolve deposits and prevent progression."
+  },
+  {
+    "id": "COND052",
+    "name": "Osteomyelitis",
+    "category": "Musculoskeletal / Infectious",
+    "icd10": "M86.9",
+    "definition": "Infection of the bone and bone marrow, most commonly caused by pyogenic bacteria (e.g., Staphylococcus aureus) via hematogenous spread or direct inoculation.",
+    "imaging_features": "Plain radiographs show osteopenia, cortical destruction, and periosteal reaction, but are insensitive early on (lagging 10-14 days). MRI is the most sensitive modality, showing replacement of fatty marrow with fluid signal (T1 hypointensity, T2/STIR hyperintensity) and peripheral enhancement (abscess).",
+    "clinical_significance": "Requires prolonged course of intravenous antibiotics and potentially surgical debridement of necrotic bone (sequestrum). Delay in treatment leads to chronic osteomyelitis, pathologic fractures, or amputation."
+  }
+]

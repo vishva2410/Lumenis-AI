@@ -1,0 +1,14 @@
+Generic single-database configuration for Alembic.
+
+This directory contains migration scripts managed by Alembic.
+
+Migrations are auto-generated using:
+
+    alembic revision --autogenerate -m "description"
+
+And applied with:
+
+    alembic upgrade head
+
+For more information, see the Alembic documentation:
+https://alembic.sqlalchemy.org/

@@ -1,0 +1,269 @@
+.report-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.report-section {
+  padding: 1.5rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.section-header h2 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.summary-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.report-meta {
+  display: flex;
+  gap: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.meta-label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.confidence-bar-wrapper {
+  width: 100px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.confidence-bar {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.confidence-value {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.recommendations-section {
+  background: linear-gradient(to right, rgba(245, 158, 11, 0.05), transparent);
+  border-left: 2px solid var(--accent-warning);
+}
+
+.recommendations-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.recommendations-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.rec-bullet {
+  width: 6px;
+  height: 6px;
+  background: var(--accent-warning);
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+}
+
+.findings-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.finding-item {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.finding-item:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.finding-item.expanded {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.finding-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.finding-header-main {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.finding-name {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.finding-header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text-muted);
+}
+
+.finding-region {
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.finding-body {
+  padding: 0 1.25rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.finding-detail-group h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.finding-detail-group p {
+  font-size: 1rem;
+  color: var(--text-primary);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+}
+
+.explanation p {
+  background: rgba(59, 130, 246, 0.05);
+  border-left: 2px solid var(--accent-primary);
+}
+
+.citations-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.citations-list li {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.citation-source {
+  color: var(--accent-primary);
+  font-weight: 600;
+  font-family: monospace;
+}
+
+.citation-text {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.citation-score {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  align-self: flex-end;
+}
+
+/* --- Print Styles for PDF Export --- */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  
+  #printable-report, #printable-report * {
+    visibility: visible;
+  }
+  
+  .findings-section, .findings-section *,
+  .recommendations-section, .recommendations-section * {
+    visibility: visible;
+  }
+  
+  #printable-report {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    color: #000 !important;
+    background: white !important;
+  }
+
+  .finding-body {
+    display: block !important;
+  }
+  
+  .glass-card {
+    background: white !important;
+    border: 1px solid #ccc !important;
+    color: #000 !important;
+    box-shadow: none !important;
+  }
+
+  .btn {
+    display: none !important;
+  }
+  
+  .severity-badge {
+    border: 1px solid #000 !important;
+  }
+  
+  .finding-item {
+    page-break-inside: avoid;
+  }
+}
