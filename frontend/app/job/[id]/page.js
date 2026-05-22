@@ -97,7 +97,7 @@ export default function JobPage() {
         <div className="processing-icon-wrapper">
           <Activity size={48} color="var(--accent-warning)" />
         </div>
-        <h2>AI Analysis in Progress</h2>
+        <h2>System Processing</h2>
         <p className="processing-subtitle">MedLens is analyzing <strong>{job.original_filename}</strong>...</p>
         
         <div className="processing-steps">
@@ -107,7 +107,7 @@ export default function JobPage() {
           </div>
           <div className={`step ${sseStatus.step >= 2 ? 'active' : ''} ${sseStatus.step === 2 ? 'pulse' : ''}`}>
             <div className="step-dot"></div>
-            <span>Multimodal VLM Analysis</span>
+            <span>Image Feature Extraction</span>
           </div>
           <div className={`step ${sseStatus.step >= 3 ? 'active' : ''} ${sseStatus.step === 3 ? 'pulse' : ''}`}>
             <div className="step-dot"></div>

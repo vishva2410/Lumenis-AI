@@ -1,18 +1,73 @@
+.dashboardLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 2.5rem;
+  border-bottom: 2px solid var(--accent-primary);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .title {
-  font-size: 2.5rem;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
   margin-bottom: 0.25rem;
 }
 
 .subtitle {
   color: var(--text-secondary);
-  font-size: 1.1rem;
+  font-size: 0.95rem;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.metricCard {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.metricHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.metricValue {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.5rem;
 }
 
 .emptyState {
@@ -22,33 +77,25 @@
   justify-content: center;
   padding: 5rem 2rem;
   text-align: center;
+  background: var(--bg-secondary);
+  border: 1px dashed var(--border-subtle);
 }
 
 .emptyIconWrapper {
-  width: 96px;
-  height: 96px;
-  background: rgba(59, 130, 246, 0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 .emptyState h3 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   margin-bottom: 0.5rem;
-}
-
-.emptyState p {
-  color: var(--text-secondary);
 }
 
 .jobGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .jobCard {
@@ -56,13 +103,20 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  transition: all var(--transition-fast);
+}
+
+.jobCard:hover {
+  border-color: var(--accent-primary);
 }
 
 .jobCardHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .jobFileName {
@@ -70,8 +124,8 @@
   align-items: center;
   gap: 0.5rem;
   color: var(--text-primary);
-  font-weight: 500;
-  font-size: 1.05rem;
+  font-weight: 600;
+  font-size: 0.95rem;
   max-width: 70%;
 }
 
@@ -85,16 +139,16 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  background: rgba(0,0,0,0.2);
-  padding: 0.25rem 0.6rem;
-  border-radius: 999px;
+  padding: 0.25rem 0.5rem;
   border: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .jobCardBody {
   flex-grow: 1;
-  padding: 1rem 0;
-  min-height: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -102,7 +156,7 @@
 
 .jobStats {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .statBox {
@@ -112,8 +166,8 @@
 }
 
 .statLabel {
-  color: var(--text-muted);
-  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 600;
@@ -121,41 +175,43 @@
 
 .statValue {
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-primary);
 }
 
 .processingState {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   color: var(--accent-warning);
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
 }
 
 .failedState {
-  background: rgba(239, 68, 68, 0.1);
   padding: 0.75rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(239, 68, 68, 0.2);
+  border: 1px solid var(--accent-danger);
+  background: #fffafa;
 }
 
 .errorText {
-  color: #fca5a5;
-  font-size: 0.9rem;
+  color: var(--accent-danger);
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
 .jobCardFooter {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   padding-top: 1rem;
   border-top: 1px solid var(--border-subtle);
 }
 
 .dateText {
-  color: var(--text-muted);
-  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
 }

@@ -120,8 +120,8 @@ export default function ChatBox({ jobId }) {
     <div className="chat-container glass-card">
       <div className="chat-header">
         <div className="chat-title">
-          <Bot size={20} color="var(--accent-primary)" />
-          <h3>AI Assistant</h3>
+          <Bot size={18} color="var(--accent-primary)" />
+          <h3>Clinical Inquiry</h3>
         </div>
         {isConnecting && <span className="chat-status status-connecting"><Loader2 size={12} className="spinner" /> Connecting...</span>}
         {!isConnecting && !error && <span className="chat-status status-connected"><span className="status-dot status-completed"></span> Connected</span>}

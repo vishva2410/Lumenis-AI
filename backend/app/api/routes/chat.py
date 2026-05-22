@@ -263,8 +263,7 @@ async def chat_websocket(
                 def _consume_stream():
                     """Consume the stream synchronously."""
                     chunks = []
-                    response_obj = stream_response()
-                    for chunk in response_obj:
+                    for chunk in stream_response:
                         if chunk.text:
                             chunks.append(chunk.text)
                     return chunks

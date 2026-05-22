@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Activity } from 'lucide-react';
+import { Box } from 'lucide-react';
 import './Navbar.css';
 
 export default function Navbar() {
@@ -8,9 +8,9 @@ export default function Navbar() {
       <div className="container navbar-container">
         <Link href="/" className="navbar-brand">
           <div className="logo-icon">
-            <Activity size={24} color="var(--accent-primary)" />
+            <Box size={24} color="var(--accent-primary)" strokeWidth={2.5} />
           </div>
-          <span className="brand-text">Med<span className="text-gradient">Lens</span></span>
+          <span className="brand-text">MEDLENS</span>
         </Link>
         <div className="navbar-links">
           <Link href="/" className="nav-link">Dashboard</Link>

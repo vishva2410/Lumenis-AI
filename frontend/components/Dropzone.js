@@ -146,7 +146,7 @@ export default function Dropzone() {
           <div className="upload-actions">
             {status === 'idle' || status === 'error' ? (
               <button className="btn btn-primary w-full" onClick={handleUpload}>
-                Start AI Analysis
+                Start System Analysis
               </button>
             ) : status === 'uploading' ? (
               <button className="btn btn-primary w-full" disabled>
