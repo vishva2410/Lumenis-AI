@@ -1,7 +1,13 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
+const isServer = typeof window === 'undefined';
+// When fetching from Server Components (SSR), we must use an absolute URL.
+// We point directly to the backend container.
+// On the client, we use relative /api to go through Next.js rewrite proxy.
+const API_BASE = isServer 
+  ? (process.env.INTERNAL_API_URL || 'http://backend:8000') + '/api' 
+  : '/api';
 
 export async function fetchJobs(skip = 0, limit = 10) {
-  const res = await fetch(`${API_BASE}/analysis/jobs?skip=${skip}&limit=${limit}`, {
+  const res = await fetch(`${API_BASE}/jobs?skip=${skip}&limit=${limit}`, {
     cache: 'no-store'
   });
   if (!res.ok) throw new Error('Failed to fetch jobs');
@@ -9,7 +15,7 @@ export async function fetchJobs(skip = 0, limit = 10) {
 }
 
 export async function fetchJob(id) {
-  const res = await fetch(`${API_BASE}/analysis/jobs/${id}`, {
+  const res = await fetch(`${API_BASE}/jobs/${id}`, {
     cache: 'no-store'
   });
   if (!res.ok) throw new Error('Failed to fetch job');
@@ -17,7 +23,7 @@ export async function fetchJob(id) {
 }
 
 export async function fetchReport(id) {
-  const res = await fetch(`${API_BASE}/analysis/jobs/${id}/report`, {
+  const res = await fetch(`${API_BASE}/jobs/${id}/report`, {
     cache: 'no-store'
   });
   if (!res.ok) {
@@ -30,20 +36,29 @@ export async function fetchReport(id) {
 export async function uploadFile(file) {
   const formData = new FormData();
   formData.append('file', file);
-  
+
   const res = await fetch(`${API_BASE}/upload`, {
     method: 'POST',
     body: formData,
   });
-  
+
   if (!res.ok) {
-    const error = await res.json();
-    throw new Error(error.detail || 'Upload failed');
+    let detail = 'Upload failed';
+    try {
+      const err = await res.json();
+      detail = err.detail || detail;
+    } catch (_) {}
+    throw new Error(detail);
   }
   return res.json();
 }
 
-// Helper to get raw file URL if we need to display the image
-// Assumes backend serves files statically, or we can use a base64 from the backend if provided.
-// In this project, we might need a route to get the file, or we handle it via object URLs on the frontend during upload.
-// For now, we'll return a placeholder if not supported.
+export async function sendChatMessage(jobId, message) {
+  const res = await fetch(`${API_BASE}/chat/${jobId}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message }),
+  });
+  if (!res.ok) throw new Error('Chat request failed');
+  return res.json();
+}

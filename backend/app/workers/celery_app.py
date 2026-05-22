@@ -42,6 +42,6 @@ celery_app.conf.update(
     broker_connection_retry_on_startup=True,
 )
 
-# ── Autodiscovery ────────────────────────────────────────────────────
-# Automatically find @celery_app.task-decorated functions in these modules.
-celery_app.autodiscover_tasks(["app.workers"])
+# ── Imports ──────────────────────────────────────────────────────────
+# Explicitly import task modules so Celery worker registers them.
+celery_app.conf.imports = ["app.workers.analysis_task"]

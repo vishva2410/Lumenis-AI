@@ -30,7 +30,7 @@ export default async function Dashboard() {
   let jobs = [];
   try {
     const data = await fetchJobs(0, 20);
-    jobs = data.items || [];
+    jobs = data.jobs || data.items || [];
   } catch (error) {
     console.error("Failed to load jobs:", error);
   }
@@ -66,7 +66,7 @@ export default async function Dashboard() {
                 <div className={styles.jobCardHeader}>
                   <div className={styles.jobFileName}>
                     <FileImage size={18} color="var(--text-muted)" />
-                    <span>{job.file_name}</span>
+                    <span>{job.original_filename}</span>
                   </div>
                   <StatusBadge status={job.status} />
                 </div>

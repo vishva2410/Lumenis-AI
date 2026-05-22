@@ -62,7 +62,7 @@ class Job(Base):
     __tablename__ = "jobs"
 
     status: Mapped[JobStatus] = mapped_column(
-        Enum(JobStatus, name="job_status", create_constraint=True),
+        String(50),
         default=JobStatus.PENDING,
         server_default=JobStatus.PENDING.value,
         nullable=False,

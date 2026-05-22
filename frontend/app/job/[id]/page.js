@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
 import { fetchJob, fetchReport } from '@/lib/api';
 import ReportView from '@/components/ReportView';
 import ChatBox from '@/components/ChatBox';
@@ -8,8 +9,9 @@ import ImageViewer from '@/components/ImageViewer';
 import { Activity, AlertTriangle, FileImage, LayoutPanelLeft } from 'lucide-react';
 import './JobPage.css';
 
-export default function JobPage({ params }) {
-  const { id } = params;
+export default function JobPage() {
+  const params = useParams();
+  const id = params?.id;
   const [job, setJob] = useState(null);
   const [report, setReport] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -18,17 +20,17 @@ export default function JobPage({ params }) {
   const [sseStatus, setSseStatus] = useState({ step: 1, message: "Initializing analysis..." });
 
   useEffect(() => {
+    if (!id || id === 'undefined') return;
+
     const loadData = async () => {
       try {
         const jobData = await fetchJob(id);
         setJob(jobData);
-        
+        setLoading(false); // Always stop the spinner once we have job data
+
         if (jobData.status === 'completed') {
           const reportData = await fetchReport(id);
           setReport(reportData);
-          setLoading(false);
-        } else if (jobData.status === 'failed') {
-          setLoading(false);
         }
       } catch (err) {
         console.error(err);
@@ -40,7 +42,7 @@ export default function JobPage({ params }) {
     loadData();
 
     // Set up SSE for real-time status if not completed
-    const sseUrl = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'}/analysis/jobs/${id}/stream`;
+    const sseUrl = `/api/jobs/${id}/stream`;
     const eventSource = new EventSource(sseUrl);
 
     eventSource.onmessage = (event) => {
@@ -96,7 +98,7 @@ export default function JobPage({ params }) {
           <Activity size={48} color="var(--accent-warning)" />
         </div>
         <h2>AI Analysis in Progress</h2>
-        <p className="processing-subtitle">MedLens is analyzing <strong>{job.file_name}</strong>...</p>
+        <p className="processing-subtitle">MedLens is analyzing <strong>{job.original_filename}</strong>...</p>
         
         <div className="processing-steps">
           <div className={`step ${sseStatus.step >= 1 ? 'active' : ''} ${sseStatus.step === 1 ? 'pulse' : ''}`}>
@@ -146,7 +148,7 @@ export default function JobPage({ params }) {
           <h1 className="job-title">Analysis Results</h1>
           <div className="job-meta">
             <FileImage size={16} />
-            <span>{job?.file_name}</span>
+            <span>{job?.original_filename}</span>
             <span className="meta-divider">•</span>
             <span>{new Date(job?.created_at).toLocaleString()}</span>
           </div>
@@ -155,7 +157,7 @@ export default function JobPage({ params }) {
 
       <div className="job-content-grid">
         <div className="main-content">
-          <ImageViewer jobId={job.id} fileName={job.file_name} />
+          <ImageViewer jobId={job.id} fileName={job.original_filename} />
           <ReportView report={report} />
         </div>
         <div className="side-content">

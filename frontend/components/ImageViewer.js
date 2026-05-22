@@ -8,7 +8,7 @@ export default function ImageViewer({ jobId, fileName }) {
 
   // Determine if it's a PDF based on the file name
   const isPdf = fileName?.toLowerCase().endsWith('.pdf');
-  const fileUrl = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'}/analysis/jobs/${jobId}/file`;
+  const fileUrl = `/api/jobs/${jobId}/file`;
 
   const handleZoomIn = () => setScale(prev => Math.min(prev + 0.2, 3));
   const handleZoomOut = () => setScale(prev => Math.max(prev - 0.2, 0.5));

@@ -72,7 +72,7 @@ class GeminiClient:
     >>> print(result.findings)
     """
 
-    MODEL_NAME: str = "gemini-1.5-pro"
+    MODEL_NAME: str = "gemini-1.5-pro-latest"
 
     # Safety settings — we need medical content to pass through
     _SAFETY_SETTINGS: list[dict[str, str]] = [

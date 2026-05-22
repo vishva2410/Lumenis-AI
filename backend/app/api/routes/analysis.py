@@ -155,16 +155,19 @@ async def stream_job_status(
     return StreamingResponse(event_generator(), media_type="text/event-stream")
 
 
+from fastapi import Response
+
 # ── Delete job ──────────────────────────────────────────────────────
 @router.delete(
     "/jobs/{job_id}",
     status_code=status.HTTP_204_NO_CONTENT,
+    response_class=Response,
     summary="Delete an analysis job",
 )
 async def delete_job(
     job: Job = Depends(get_valid_job),
     db: AsyncSession = Depends(get_db),
-) -> None:
+):
     """
     Delete an analysis job and its associated file from disk.
 

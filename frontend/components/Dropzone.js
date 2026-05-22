@@ -67,10 +67,17 @@ export default function Dropzone() {
     setStatus('uploading');
     try {
       const response = await uploadFile(file);
+      console.log('Upload response:', response);
+      const jobId = response.id || response.job_id || response.uuid;
+      
+      if (!jobId) {
+        throw new Error("Invalid response from server: missing Job ID");
+      }
+      
       setStatus('success');
       // Redirect to the job page after a short delay for smooth UX
       setTimeout(() => {
-        router.push(`/job/${response.id}`);
+        router.push(`/job/${jobId}`);
       }, 800);
     } catch (error) {
       setStatus('error');
