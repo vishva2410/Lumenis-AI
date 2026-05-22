@@ -5,7 +5,7 @@ import './ReportView.css';
 export default function ReportView({ report }) {
   const [expandedFindings, setExpandedFindings] = useState(
     // Expand the first finding by default if exists
-    report.findings?.length > 0 ? { 0: true } : {}
+    report?.findings?.length > 0 ? { 0: true } : {}
   );
 
   const toggleFinding = (index) => {
