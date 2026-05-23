@@ -105,11 +105,15 @@
   flex-direction: column;
   background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   transition: all var(--transition-fast);
 }
 
 .jobCard:hover {
-  border-color: var(--accent-primary);
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 .jobCardHeader {

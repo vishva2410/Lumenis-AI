@@ -10,7 +10,7 @@ export default function Navbar() {
           <div className="logo-icon">
             <Box size={24} color="var(--accent-primary)" strokeWidth={2.5} />
           </div>
-          <span className="brand-text">MEDLENS</span>
+          <span className="brand-text">LUMENIS AI</span>
         </Link>
         <div className="navbar-links">
           <Link href="/" className="nav-link">Dashboard</Link>
