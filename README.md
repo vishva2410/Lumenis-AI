@@ -1,5 +1,5 @@
 # Lumenis AI
-
+ 
 > A minimalist, high-end SaaS platform for automated medical imaging analysis.
 
 Lumenis AI is a multimodal AI system that takes medical images (DICOM, JPEG, PNG) or clinical PDF reports as input and returns a structured, plain-English explanation of the findings — complete with severity indicators and grounded medical context.
