@@ -9,7 +9,7 @@ export default function ChatBox({ jobId }) {
   const [input, setInput] = useState('');
   const [isConnecting, setIsConnecting] = useState(true);
   const [error, setError] = useState(null);
-  const [ws, setWs] = useState(null);
+  const ws = useRef(null);
   const [isReceiving, setIsReceiving] = useState(false);
   
   const messagesEndRef = useRef(null);
@@ -30,6 +30,7 @@ export default function ChatBox({ jobId }) {
     const wsUrl = process.env.NEXT_PUBLIC_WS_URL || `ws://localhost:8000/api/chat/ws/${jobId}`;
     
     const socket = new WebSocket(wsUrl);
+    ws.current = socket;
 
     socket.onopen = () => {
       console.log('WebSocket connected');
@@ -86,8 +87,6 @@ export default function ChatBox({ jobId }) {
       }
     };
 
-    setWs(socket);
-
     return () => {
       socket.close(1000, 'Component unmounting');
     };
@@ -95,14 +94,14 @@ export default function ChatBox({ jobId }) {
 
   const sendMessage = (e) => {
     e.preventDefault();
-    if (!input.trim() || !ws || isReceiving) return;
+    if (!input.trim() || !ws.current || isReceiving) return;
 
     const messageContent = input.trim();
     setMessages(prev => [...prev, { role: 'user', content: messageContent }]);
     setInput('');
     setIsReceiving(true);
     
-    ws.send(JSON.stringify({ message: messageContent }));
+    ws.current.send(JSON.stringify({ message: messageContent }));
   };
 
   const renderMessageContent = (content) => {

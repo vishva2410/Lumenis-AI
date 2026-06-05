@@ -28,7 +28,7 @@ from tenacity import (
 )
 
 from app.core.config import settings
-from app.schemas.findings import AnalysisResult, Finding, ImageMetadata
+from app.schemas.findings import AnalysisResult, ImageMetadata
 from app.services.prompts import PromptTemplates
 
 logger = logging.getLogger(__name__)

@@ -133,7 +133,7 @@ export default function ReportView({ report }) {
                           {item.citations.map((cit, cidx) => (
                             <li key={cidx}>
                               <span className="citation-source">[{cit.source_id}]</span>
-                              <span className="citation-text">"{cit.source_text}"</span>
+                              <span className="citation-text">&quot;{cit.source_text}&quot;</span>
                               <span className="citation-score">Relevance: {(cit.relevance_score * 100).toFixed(0)}%</span>
                             </li>
                           ))}

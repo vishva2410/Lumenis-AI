@@ -13,7 +13,7 @@ import logging
 import re
 from typing import Any
 
-from app.schemas.findings import AnalysisResult, Finding
+from app.schemas.findings import AnalysisResult
 from app.schemas.report import Citation, ReportFinding
 from app.services.gemini_client import GeminiClient
 from app.services.prompts import PromptTemplates

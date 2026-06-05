@@ -9,7 +9,6 @@ located at the project root.
 from __future__ import annotations
 
 from pathlib import Path
-from typing import ClassVar
 
 from pydantic import Field, computed_field
 from pydantic_settings import BaseSettings, SettingsConfigDict
