@@ -6,14 +6,20 @@ Provides CRUD-style endpoints for analysis jobs and their reports.
 
 from __future__ import annotations
 
+import asyncio
+import json
 import logging
+import mimetypes
 from pathlib import Path
 
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+import redis.asyncio as redis
+from fastapi import APIRouter, Depends, HTTPException, Query, status, Response
+from fastapi.responses import FileResponse, StreamingResponse
 from sqlalchemy import delete, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.api.deps import get_db, get_valid_job
+from app.core.config import settings
 from app.models.job import Job
 from app.models.report import Report
 from app.schemas.job import JobList, JobResponse
@@ -68,9 +74,6 @@ async def get_job(
 
 
 # ── Get job file ────────────────────────────────────────────────────
-from fastapi.responses import FileResponse
-import mimetypes
-
 @router.get(
     "/jobs/{job_id}/file",
     summary="Get the uploaded file for a job",
@@ -98,11 +101,6 @@ async def get_job_file(
 
 
 # ── Stream job status (SSE) ─────────────────────────────────────────
-import asyncio
-from fastapi.responses import StreamingResponse
-import redis.asyncio as redis
-from app.core.config import settings
-
 @router.get(
     "/jobs/{job_id}/stream",
     summary="Stream real-time analysis status via SSE",
@@ -132,12 +130,11 @@ async def stream_job_status(
                     data = message["data"]
                     yield f"data: {data}\n\n"
                     # Try to parse the json to see if it's the terminal step
-                    import json
                     try:
                         parsed = json.loads(data)
                         if parsed.get("step") == 6 or parsed.get("step") == -1:
                             break
-                    except:
+                    except Exception:
                         pass
                 else:
                     # Keep-alive heartbeat
@@ -154,8 +151,6 @@ async def stream_job_status(
 
     return StreamingResponse(event_generator(), media_type="text/event-stream")
 
-
-from fastapi import Response
 
 # ── Delete job ──────────────────────────────────────────────────────
 @router.delete(
