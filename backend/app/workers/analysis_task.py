@@ -139,7 +139,6 @@ def run_analysis(self, job_id: str, file_path: str) -> dict:
             if parsed_report.sections.get("clinical_history"):
                 additional_context["clinical_history"] = parsed_report.sections["clinical_history"]
 
-            processed_image = None
             processed_image_path = None
 
         else:
@@ -156,7 +155,6 @@ def run_analysis(self, job_id: str, file_path: str) -> dict:
                 list(processed.metadata.keys()),
             )
 
-            processed_image = processed.image
             processed_image_path = processed.image_path
 
             # Pass extracted DICOM metadata as additional context
@@ -177,7 +175,7 @@ def run_analysis(self, job_id: str, file_path: str) -> dict:
         _publish_status(job_id, 2, "Multimodal VLM analysis in progress...")
         logger.info("Step 2: Gemini multimodal analysis …")
 
-        from app.services.gemini_client import GeminiClient, GeminiClientError
+        from app.services.gemini_client import GeminiClient
 
         client = GeminiClient()
 

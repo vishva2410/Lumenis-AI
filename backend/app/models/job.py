@@ -8,21 +8,20 @@ Tracks status, uploaded file metadata, and analysis results.
 from __future__ import annotations
 
 import enum
-import uuid
-from datetime import datetime, timezone
 
 from sqlalchemy import (
     BigInteger,
-    DateTime,
-    Enum,
     String,
     Text,
-    func,
 )
-from sqlalchemy.dialects.postgresql import JSON, UUID
+from sqlalchemy.dialects.postgresql import JSON
+from typing import TYPE_CHECKING
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
+
+if TYPE_CHECKING:
+    from app.models.report import Report
 
 
 class JobStatus(str, enum.Enum):

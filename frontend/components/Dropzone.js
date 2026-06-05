@@ -23,21 +23,7 @@ export default function Dropzone() {
     setIsDragging(false);
   }, []);
 
-  const onDrop = useCallback((e) => {
-    e.preventDefault();
-    setIsDragging(false);
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      handleFileSelection(e.dataTransfer.files[0]);
-    }
-  }, []);
-
-  const onFileChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      handleFileSelection(e.target.files[0]);
-    }
-  };
-
-  const handleFileSelection = (selectedFile) => {
+  const handleFileSelection = useCallback((selectedFile) => {
     // Basic validation
     const validTypes = ['image/jpeg', 'image/png', 'image/dicom', 'application/dicom', 'application/pdf'];
     // For DICOMs which might not have standard mime types, we allow fallback by extension
@@ -59,8 +45,21 @@ export default function Dropzone() {
     setFile(selectedFile);
     setStatus('idle');
     setErrorMsg('');
-  };
+  }, []);
 
+  const onDrop = useCallback((e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFileSelection(e.dataTransfer.files[0]);
+    }
+  }, [handleFileSelection]);
+
+  const onFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      handleFileSelection(e.target.files[0]);
+    }
+  };
   const handleUpload = async () => {
     if (!file) return;
     

@@ -7,20 +7,21 @@ Stores the generated clinical report for a completed analysis job.
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timezone
 
 from sqlalchemy import (
-    DateTime,
     Float,
     ForeignKey,
     String,
     Text,
-    func,
 )
 from sqlalchemy.dialects.postgresql import JSON, UUID
+from typing import TYPE_CHECKING
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
+
+if TYPE_CHECKING:
+    from app.models.job import Job
 
 
 class Report(Base):

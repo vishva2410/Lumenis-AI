@@ -11,16 +11,13 @@ Pipeline position:
 
 from __future__ import annotations
 
-import json
 import logging
-import re
 import uuid
 from typing import Any
 
 from app.schemas.findings import Finding, ImageMetadata
-from app.schemas.report import Citation, FullReport, ReportFinding
+from app.schemas.report import FullReport, ReportFinding
 from app.services.gemini_client import GeminiClient
-from app.services.prompts import PromptTemplates
 
 logger = logging.getLogger(__name__)
 

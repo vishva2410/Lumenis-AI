@@ -16,10 +16,9 @@ import logging
 import os
 import tempfile
 import uuid
-from dataclasses import field
 from enum import Enum
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 import cv2
 import numpy as np
