@@ -98,5 +98,6 @@ async def upload_file(
         job.error_message = f"Task dispatch failed: {exc}"
         await db.flush()
 
-    # ── 5. Return response ───────────────────────────────────────────
+    # ── 5. Commit and return response ────────────────────────────────
+    await db.commit()
     return JobResponse.model_validate(job)

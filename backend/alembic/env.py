@@ -21,6 +21,7 @@ from app.core.config import settings  # noqa: E402
 
 # Import Base and all models so metadata is populated
 from app.db.base import Base  # noqa: E402, F401
+import app.models  # noqa: E402, F401
 
 # Alembic Config object — provides access to alembic.ini values
 config = context.config

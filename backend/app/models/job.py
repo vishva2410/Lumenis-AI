@@ -17,6 +17,7 @@ from sqlalchemy import (
     Enum,
     String,
     Text,
+    ForeignKey,
     func,
 )
 from sqlalchemy.dialects.postgresql import JSON, UUID
@@ -69,6 +70,10 @@ class Job(Base):
         index=True,
     )
 
+    study_id: Mapped[uuid.UUID | None] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("studies.id", ondelete="CASCADE"), nullable=True, index=True
+    )
+
     original_filename: Mapped[str] = mapped_column(
         String(512),
         nullable=False,
@@ -107,6 +112,8 @@ class Job(Base):
     )
 
     # ── Relationships ──────────────────────────────────────────────
+    study: Mapped["Study"] = relationship("Study", back_populates="jobs")
+
     report: Mapped["Report"] = relationship(
         "Report",
         back_populates="job",

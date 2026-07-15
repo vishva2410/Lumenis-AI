@@ -5,9 +5,9 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   async rewrites() {
-    // In Docker: backend is reachable via Docker network as http://backend:8000
-    // In local dev (npm run dev): BACKEND_URL can be set, defaults to localhost:8000
-    const backendUrl = process.env.BACKEND_URL || 'http://backend:8000';
+    // In Docker: set BACKEND_URL=http://backend:8000 via docker-compose environment.
+    // In local dev (npm run dev): defaults to localhost so the API is reachable.
+    const backendUrl = process.env.BACKEND_URL || 'http://localhost:8000';
     return [
       {
         source: '/api/:path*',

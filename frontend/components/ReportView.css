@@ -1,269 +1,317 @@
-.report-container {
+/* ═══════════════════════════════════════════════════════
+   REPORTVIEW — Expandable Findings Cards
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Empty state ────────────────────────────────────── */
+.reportEmpty {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-}
-
-.report-section {
-  padding: 1.5rem;
-}
-
-.section-header {
-  display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
-}
-
-.section-header h2 {
-  font-size: 1.25rem;
-  margin: 0;
-}
-
-.summary-text {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--text-primary);
-  margin-bottom: 1.5rem;
-}
-
-.report-meta {
-  display: flex;
-  gap: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border-subtle);
-  flex-wrap: wrap;
-}
-
-.meta-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.meta-label {
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-10) var(--space-6);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   color: var(--text-muted);
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.reportEmptyTitle {
+  font-size: 0.9375rem;
   font-weight: 600;
-}
-
-.confidence-bar-wrapper {
-  width: 100px;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.confidence-bar {
-  height: 100%;
-  border-radius: 4px;
-}
-
-.confidence-value {
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-
-.recommendations-section {
-  background: linear-gradient(to right, rgba(245, 158, 11, 0.05), transparent);
-  border-left: 2px solid var(--accent-warning);
-}
-
-.recommendations-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.recommendations-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  font-size: 1rem;
-  color: var(--text-primary);
-}
-
-.rec-bullet {
-  width: 6px;
-  height: 6px;
-  background: var(--accent-warning);
-  border-radius: 50%;
-  margin-top: 0.5rem;
-  flex-shrink: 0;
-  box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
-}
-
-.findings-accordion {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.finding-item {
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  background: rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  transition: all var(--transition-normal);
-}
-
-.finding-item:hover {
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-.finding-item.expanded {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(59, 130, 246, 0.3);
-}
-
-.finding-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.25rem;
-  cursor: pointer;
-  user-select: none;
-}
-
-.finding-header-main {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.finding-name {
-  font-size: 1.1rem;
-  margin: 0;
-}
-
-.finding-header-right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: var(--text-muted);
-}
-
-.finding-region {
-  font-size: 0.9rem;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-}
-
-.finding-body {
-  padding: 0 1.25rem 1.25rem 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.finding-detail-group h4 {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.95rem;
   color: var(--text-secondary);
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  margin: 0;
 }
 
-.finding-detail-group p {
-  font-size: 1rem;
+.reportEmptyDesc {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin: 0;
+  max-width: 320px;
+}
+
+/* ── Findings container ─────────────────────────────── */
+.findingsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* ── Finding card ───────────────────────────────────── */
+.findingCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+  overflow: hidden;
+  transition: box-shadow var(--duration-normal) var(--ease-out);
+  /* Severity left border — overridden by severity classes */
+  border-left: 4px solid var(--border);
+}
+
+.findingCard:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+/* Severity-colored left border variants */
+.findingCard.severity-low {
+  border-left-color: var(--success);
+}
+
+.findingCard.severity-moderate {
+  border-left-color: var(--warning);
+}
+
+.findingCard.severity-high {
+  border-left-color: var(--danger);
+}
+
+.findingCard.severity-critical {
+  border-left-color: var(--critical);
+}
+
+/* ── Finding header ─────────────────────────────────── */
+.findingHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  text-align: left;
   color: var(--text-primary);
-  background: rgba(0, 0, 0, 0.3);
-  padding: 1rem;
-  border-radius: var(--radius-sm);
+  outline: none;
+  transition: background var(--duration-fast) var(--ease-out);
 }
 
-.explanation p {
-  background: rgba(59, 130, 246, 0.05);
-  border-left: 2px solid var(--accent-primary);
+.findingHeader:hover {
+  background: var(--surface-hover);
 }
 
-.citations-list {
-  list-style: none;
+.findingHeader:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--primary-200);
+}
+
+.findingTitleRow {
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  min-width: 0;
 }
 
-.citations-list li {
-  background: rgba(255, 255, 255, 0.02);
-  padding: 0.75rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.citation-source {
-  color: var(--accent-primary);
+.findingName {
+  font-size: 0.9375rem;
   font-weight: 600;
-  font-family: monospace;
+  color: var(--text-primary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.citation-text {
+/* Region tag */
+.regionTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 8px;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  border-radius: var(--radius-full);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ── Header right side ──────────────────────────────── */
+.findingHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+/* Confidence pill */
+.confidencePill {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.confidenceBar {
+  width: 48px;
+  height: 5px;
+  background: var(--muted);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.confidenceBarFill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width var(--duration-normal) var(--ease-out);
+}
+
+.confidenceValue {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+  min-width: 32px;
+  text-align: right;
+}
+
+.expandChevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+
+/* ── Finding body (expandable) ──────────────────────── */
+.findingBody {
+  /* Animated via motion — overflow handled inline */
+}
+
+.findingBodyInner {
+  padding: 0 var(--space-5) var(--space-5);
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ── Detail groups ──────────────────────────────────── */
+.findingDetailGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.detailLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.detailText {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Explanation highlight box */
+.explanationGroup {
+  background: var(--primary-50);
+  border: 1px solid var(--primary-200);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+}
+
+.explanationGroup .detailLabel {
+  color: var(--primary);
+}
+
+.explanationGroup .detailText {
+  color: var(--text-primary);
+}
+
+/* Verified badge */
+.verifiedBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 6px;
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid var(--success-border);
+  border-radius: var(--radius-full);
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* ── Citations ──────────────────────────────────────── */
+.citationsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.citationItem {
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.citationHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.citationSource {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.citationRelevance {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.citationText {
+  font-size: 0.8125rem;
+  line-height: 1.6;
   color: var(--text-secondary);
   font-style: italic;
+  margin: 0;
 }
 
-.citation-score {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  align-self: flex-end;
-}
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .findingHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+  }
 
-/* --- Print Styles for PDF Export --- */
-@media print {
-  body * {
-    visibility: hidden;
-  }
-  
-  #printable-report, #printable-report * {
-    visibility: visible;
-  }
-  
-  .findings-section, .findings-section *,
-  .recommendations-section, .recommendations-section * {
-    visibility: visible;
-  }
-  
-  #printable-report {
-    position: absolute;
-    left: 0;
-    top: 0;
+  .findingHeaderRight {
     width: 100%;
-    color: #000 !important;
-    background: white !important;
+    justify-content: space-between;
   }
 
-  .finding-body {
-    display: block !important;
-  }
-  
-  .glass-card {
-    background: white !important;
-    border: 1px solid #ccc !important;
-    color: #000 !important;
-    box-shadow: none !important;
+  .findingBodyInner {
+    padding: 0 var(--space-4) var(--space-4);
+    padding-top: var(--space-3);
   }
 
-  .btn {
-    display: none !important;
-  }
-  
-  .severity-badge {
-    border: 1px solid #000 !important;
-  }
-  
-  .finding-item {
-    page-break-inside: avoid;
+  .findingName {
+    font-size: 0.875rem;
   }
 }

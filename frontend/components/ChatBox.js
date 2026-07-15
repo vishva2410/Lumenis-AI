@@ -1,174 +1,347 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { Send, Bot, User, Loader2, AlertCircle } from 'lucide-react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { Send, Bot, User, Loader2, AlertCircle, WifiOff } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import './ChatBox.css';
 
+/**
+ * ChatBox — WebSocket-powered clinical assistant chat component.
+ *
+ * Connects to the backend streaming chat endpoint and renders
+ * a polished, animated conversation UI with user / assistant / system messages.
+ *
+ * @param {{ jobId: string }} props
+ */
 export default function ChatBox({ jobId }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
-  const [isConnecting, setIsConnecting] = useState(true);
-  const [error, setError] = useState(null);
-  const [ws, setWs] = useState(null);
+  const [connectionStatus, setConnectionStatus] = useState('connecting'); // 'connecting' | 'connected' | 'disconnected' | 'error'
   const [isReceiving, setIsReceiving] = useState(false);
-  
-  const messagesEndRef = useRef(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const wsRef = useRef(null);
+  const messagesEndRef = useRef(null);
+  const inputRef = useRef(null);
+  const reconnectAttempts = useRef(0);
+  const maxReconnectAttempts = 3;
+
+  /* ── Auto-scroll ──────────────────────────────────── */
+  const scrollToBottom = useCallback(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, isReceiving]);
+  }, [messages, isReceiving, scrollToBottom]);
 
+  /* ── WebSocket lifecycle ──────────────────────────── */
   useEffect(() => {
     if (!jobId) return;
 
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    // Use localhost:8000 for local dev
-    const wsUrl = process.env.NEXT_PUBLIC_WS_URL || `ws://localhost:8000/api/chat/ws/${jobId}`;
-    
-    const socket = new WebSocket(wsUrl);
+    const connectWebSocket = () => {
+      setConnectionStatus('connecting');
+      setErrorMessage(null);
 
-    socket.onopen = () => {
-      console.log('WebSocket connected');
-      setIsConnecting(false);
-      setError(null);
-      setMessages([{ role: 'system', content: 'Chat connected. You can ask follow-up questions about the analysis.' }]);
-    };
+      // Build the WS URL — honour env override first
+      const envWsUrl = process.env.NEXT_PUBLIC_WS_URL;
+      const wsUrl = envWsUrl
+        ? `${envWsUrl}/api/chat/ws/${jobId}`
+        : `ws://localhost:8000/api/chat/ws/${jobId}`;
 
-    socket.onmessage = (event) => {
-      try {
-        const data = JSON.parse(event.data);
-        
-        if (data.event === 'connected') {
-          // Handled in onopen
-        } else if (data.event === 'error') {
-          setError(data.detail || 'An error occurred');
-          setIsReceiving(false);
-        } else if (data.token) {
-          setIsReceiving(true);
-          setMessages(prev => {
-            const newMessages = [...prev];
-            const last = newMessages[newMessages.length - 1];
-            
-            if (last && last.role === 'assistant' && last.isStreaming) {
-              // Append to streaming message
-              last.content += data.token;
-            } else {
-              // Create new streaming message
-              newMessages.push({ role: 'assistant', content: data.token, isStreaming: true });
-            }
-            return newMessages;
-          });
-        } else if (data.event === 'done') {
-          setIsReceiving(false);
-          setMessages(prev => {
-            const newMessages = [...prev];
-            const last = newMessages[newMessages.length - 1];
-            if (last && last.role === 'assistant') {
-              last.isStreaming = false;
-            }
-            return newMessages;
-          });
+      const socket = new WebSocket(wsUrl);
+
+      socket.onopen = () => {
+        setConnectionStatus('connected');
+        setErrorMessage(null);
+        reconnectAttempts.current = 0;
+        setMessages(prev => {
+          // Only add system message if the chat is fresh
+          if (prev.length === 0) {
+            return [
+              {
+                id: crypto.randomUUID(),
+                role: 'system',
+                content: 'Connected to Clinical Assistant. Ask any follow-up questions about the analysis.',
+              },
+            ];
+          }
+          return prev;
+        });
+      };
+
+      socket.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+
+          if (data.event === 'connected') {
+            // Already handled in onopen
+            return;
+          }
+
+          if (data.event === 'error') {
+            setErrorMessage(data.detail || 'An error occurred during processing.');
+            setIsReceiving(false);
+            return;
+          }
+
+          if (data.token) {
+            setIsReceiving(true);
+            setMessages(prev => {
+              const updated = [...prev];
+              const last = updated[updated.length - 1];
+
+              if (last && last.role === 'assistant' && last.isStreaming) {
+                // Append token to the existing streaming message
+                return updated.map((msg, i) =>
+                  i === updated.length - 1
+                    ? { ...msg, content: msg.content + data.token }
+                    : msg
+                );
+              }
+
+              // Start a new assistant message
+              return [
+                ...updated,
+                {
+                  id: crypto.randomUUID(),
+                  role: 'assistant',
+                  content: data.token,
+                  isStreaming: true,
+                },
+              ];
+            });
+          }
+
+          if (data.event === 'done') {
+            setIsReceiving(false);
+            setMessages(prev =>
+              prev.map((msg, i) =>
+                i === prev.length - 1 && msg.role === 'assistant'
+                  ? { ...msg, isStreaming: false }
+                  : msg
+              )
+            );
+
+            // Re-focus input after response completes
+            setTimeout(() => inputRef.current?.focus(), 100);
+          }
+        } catch (err) {
+          console.error('ChatBox: failed to parse WS message:', err);
         }
-      } catch (err) {
-        console.error('Failed to parse WebSocket message:', err);
-      }
+      };
+
+      socket.onclose = (event) => {
+        wsRef.current = null;
+
+        if (event.code === 1000) {
+          // Normal close — component unmounting
+          setConnectionStatus('disconnected');
+          return;
+        }
+
+        // Abnormal close — attempt reconnect
+        if (reconnectAttempts.current < maxReconnectAttempts) {
+          reconnectAttempts.current += 1;
+          const delay = Math.min(1000 * 2 ** reconnectAttempts.current, 8000);
+          setTimeout(connectWebSocket, delay);
+        } else {
+          setConnectionStatus('error');
+          setErrorMessage('Unable to connect. Please refresh the page to try again.');
+        }
+      };
+
+      socket.onerror = () => {
+        // onerror fires before onclose — let onclose handle reconnect logic
+        setConnectionStatus('error');
+      };
+
+      wsRef.current = socket;
     };
 
-    socket.onclose = (event) => {
-      console.log('WebSocket disconnected:', event.code);
-      setIsConnecting(false);
-      if (event.code !== 1000) {
-        setError('Chat disconnected. Please refresh to reconnect.');
-      }
-    };
-
-    setWs(socket);
+    connectWebSocket();
 
     return () => {
-      socket.close(1000, 'Component unmounting');
+      if (wsRef.current) {
+        wsRef.current.close(1000, 'Component unmounting');
+        wsRef.current = null;
+      }
     };
   }, [jobId]);
 
+  /* ── Send message ─────────────────────────────────── */
   const sendMessage = (e) => {
     e.preventDefault();
-    if (!input.trim() || !ws || isReceiving) return;
+    const trimmed = input.trim();
+    if (!trimmed || !wsRef.current || isReceiving || connectionStatus !== 'connected') return;
 
-    const messageContent = input.trim();
-    setMessages(prev => [...prev, { role: 'user', content: messageContent }]);
+    setMessages(prev => [
+      ...prev,
+      { id: crypto.randomUUID(), role: 'user', content: trimmed },
+    ]);
     setInput('');
     setIsReceiving(true);
-    
-    ws.send(JSON.stringify({ message: messageContent }));
+
+    wsRef.current.send(JSON.stringify({ message: trimmed }));
   };
 
-  const renderMessageContent = (content) => {
-    // Basic formatting: bold, italic, line breaks
-    // In a real app, use a proper Markdown parser like react-markdown
-    const formatted = content
-      .replace(/\n/g, '<br />')
+  /* ── Format message content (basic markdown) ─────── */
+  const formatContent = (content) => {
+    if (!content) return '';
+    const html = content
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em>$1</em>');
-    
-    return <div dangerouslySetInnerHTML={{ __html: formatted }} />;
+      .replace(/(?<!\*)\*(?!\*)(.*?)(?<!\*)\*(?!\*)/g, '<em>$1</em>')
+      .replace(/\n/g, '<br />');
+    return <div dangerouslySetInnerHTML={{ __html: html }} />;
   };
 
+  /* ── Status helpers ───────────────────────────────── */
+  const isInputDisabled = connectionStatus !== 'connected' || isReceiving;
+
+  const renderStatus = () => {
+    switch (connectionStatus) {
+      case 'connecting':
+        return (
+          <span className="chatStatus connecting">
+            <Loader2 size={12} className="spinner" />
+            Connecting…
+          </span>
+        );
+      case 'connected':
+        return (
+          <span className="chatStatus connected">
+            <span className="statusDot" />
+            Connected
+          </span>
+        );
+      case 'error':
+      case 'disconnected':
+        return (
+          <span className="chatStatus disconnected">
+            <WifiOff size={12} />
+            Disconnected
+          </span>
+        );
+      default:
+        return null;
+    }
+  };
+
+  /* ── Render ────────────────────────────────────────── */
   return (
-    <div className="chat-container glass-card">
-      <div className="chat-header">
-        <div className="chat-title">
-          <Bot size={18} color="var(--accent-primary)" />
-          <h3>Clinical Inquiry</h3>
+    <div className="chatContainer">
+      {/* ── Header ──────────────────────────────────── */}
+      <div className="chatHeader">
+        <div className="chatTitle">
+          <div className="chatTitleIcon">
+            <Bot size={18} />
+          </div>
+          <h3>Clinical Assistant</h3>
         </div>
-        {isConnecting && <span className="chat-status status-connecting"><Loader2 size={12} className="spinner" /> Connecting...</span>}
-        {!isConnecting && !error && <span className="chat-status status-connected"><span className="status-dot status-completed"></span> Connected</span>}
+        {renderStatus()}
       </div>
 
-      <div className="chat-messages">
-        {error && (
-          <div className="chat-error">
-            <AlertCircle size={16} />
-            {error}
-          </div>
+      {/* ── Messages ────────────────────────────────── */}
+      <div className="chatMessages">
+        {errorMessage && (
+          <motion.div
+            className="chatError"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <AlertCircle size={15} />
+            <span>{errorMessage}</span>
+          </motion.div>
         )}
-        
-        {messages.map((msg, index) => (
-          <div key={index} className={`message-wrapper ${msg.role}`}>
-            {msg.role !== 'system' && (
-              <div className="message-avatar">
-                {msg.role === 'user' ? <User size={16} /> : <Bot size={16} />}
-              </div>
-            )}
-            <div className={`message-bubble ${msg.role}`}>
-              {msg.role === 'system' ? (
-                <span>{msg.content}</span>
-              ) : (
-                renderMessageContent(msg.content)
+
+        <AnimatePresence initial={false}>
+          {messages.map((msg) => (
+            <motion.div
+              key={msg.id}
+              className={`messageWrapper ${msg.role}`}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {msg.role === 'assistant' && (
+                <div className="messageAvatar assistantAvatar">
+                  <Bot size={14} />
+                </div>
               )}
+
+              {msg.role === 'user' && (
+                <div className="messageAvatar userAvatar">
+                  <User size={14} />
+                </div>
+              )}
+
+              <div className={`messageBubble ${msg.role}`}>
+                {msg.role === 'system' ? (
+                  <span>{msg.content}</span>
+                ) : (
+                  formatContent(msg.content)
+                )}
+                {msg.isStreaming && (
+                  <span className="streamingCursor" />
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+
+        {/* Typing indicator while waiting for first token */}
+        {isReceiving && messages[messages.length - 1]?.role === 'user' && (
+          <motion.div
+            className="messageWrapper assistant"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className="messageAvatar assistantAvatar">
+              <Bot size={14} />
             </div>
-          </div>
-        ))}
+            <div className="messageBubble assistant">
+              <span className="typingDots">
+                <span />
+                <span />
+                <span />
+              </span>
+            </div>
+          </motion.div>
+        )}
+
         <div ref={messagesEndRef} />
       </div>
 
-      <form className="chat-input-area" onSubmit={sendMessage}>
+      {/* ── Input ───────────────────────────────────── */}
+      <form className="chatInputArea" onSubmit={sendMessage}>
         <input
+          ref={inputRef}
           type="text"
-          className="input-field"
+          className="chatInput"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Ask a question about the report..."
-          disabled={isConnecting || error || isReceiving}
+          placeholder={
+            connectionStatus !== 'connected'
+              ? 'Waiting for connection…'
+              : 'Ask a question about the report…'
+          }
+          disabled={isInputDisabled}
         />
-        <button 
-          type="submit" 
-          className="btn btn-primary send-btn"
-          disabled={!input.trim() || isConnecting || error || isReceiving}
+        <button
+          type="submit"
+          className="sendBtn"
+          disabled={!input.trim() || isInputDisabled}
+          aria-label="Send message"
         >
-          <Send size={18} />
+          {isReceiving ? <Loader2 size={18} className="spinner" /> : <Send size={18} />}
         </button>
       </form>
     </div>

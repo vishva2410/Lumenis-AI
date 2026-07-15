@@ -1,0 +1,103 @@
+/* ═══════════════════════════════════════════════════════
+   ANALYSIS CHARTS — Findings Visualization
+   ═══════════════════════════════════════════════════════ */
+
+.analysis-charts-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+  overflow: hidden;
+}
+
+.charts-header {
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.charts-header h2 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.charts-body {
+  padding: var(--space-4) var(--space-5);
+}
+
+.chart-wrapper {
+  width: 100%;
+  min-height: 200px;
+}
+
+.no-chart-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-10);
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  gap: var(--space-2);
+}
+
+.no-chart-data svg {
+  opacity: 0.4;
+}
+
+/* Recharts Tooltip Override */
+.chart-tooltip {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-md) !important;
+  padding: var(--space-3) var(--space-4) !important;
+}
+
+.chart-tooltip-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.chart-tooltip-value {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* Chart legend */
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.legend-dot.low { background: var(--success); }
+.legend-dot.moderate { background: var(--warning); }
+.legend-dot.high { background: var(--danger); }
+.legend-dot.critical { background: var(--critical); }
